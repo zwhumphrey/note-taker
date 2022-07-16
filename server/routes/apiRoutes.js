@@ -1,10 +1,10 @@
 // const { Router } = require("express");
 const router = require("express").Router();
-const dbJson = require("../db/db.json");
-const fs = require("fs");
-const path = require("path");
+// const dbJson = require("../db/db.json");
+// const fs = require("fs");
+// const path = require("path");
 const { createNote, getNotes } = require("../db/db");
-// const getNotes = require("../db/db");
+const getNotes = require("../db/db");
 
 // const router = Router();
 
