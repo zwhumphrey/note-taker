@@ -1,10 +1,13 @@
 // const { Router } = require("express");
 const router = require("express").Router();
-// const dbJson = require("../db/db.json");
-// const fs = require("fs");
-// const path = require("path");
-const { createNote, getNotes } = require("../db/db");
-const getNotes = require("../db/db");
+const dbJson = require("/Users/zwhumphrey/Documents/code/coding-bootcamp/week11/note-taker/db/db.json");
+// console.log("dbJson");
+const fs = require("fs");
+const path = require("path");
+const {
+  createNote,
+} = require("/Users/zwhumphrey/Documents/code/coding-bootcamp/week11/note-taker/db/db");
+const getNotes = require("/Users/zwhumphrey/Documents/code/coding-bootcamp/week11/note-taker/db/db");
 
 // const router = Router();
 
