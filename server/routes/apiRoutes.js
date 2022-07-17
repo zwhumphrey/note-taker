@@ -1,7 +1,6 @@
 // const { Router } = require("express");
 const router = require("express").Router();
 const dbJson = require("/Users/zwhumphrey/Documents/code/coding-bootcamp/week11/note-taker/db/db.json");
-// console.log("dbJson");
 const fs = require("fs");
 const path = require("path");
 const {
@@ -19,7 +18,7 @@ router.get("/notes", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.get("/notes", (req, res) => {
+router.post("/notes", (req, res) => {
   console.log("POST api notes");
   const note = createNote(req.body);
   res.json(note);
