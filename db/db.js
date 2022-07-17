@@ -1,26 +1,25 @@
-const router = require("express").Router();
-const dbJson = require("./db.json");
+//const dbJson = require("./db.json");
 const fs = require("fs");
-const path = require("path");
+//const path = require("path");
 const { v4: uuidv4 } = require("uuid");
-const { workerData } = require("worker_threads");
+//const { workerData } = require("worker_threads");
 const util = require("util");
 
-const readFile = util.promisify(fs.readfile);
-const writeFile = util.promisify(fs.writefile);
+const readNote = util.promisify(fs.readfile);
+const writeNote = util.promisify(fs.writefile);
 
 function read() {
-  return readFile("db/db.json", "utf8");
+  return readNote("db/db.json", "utf8");
 }
 
 function write() {
-  return writeFile("db/db.json", JSON.stringify(notes));
+  return writeNote("db/db.json", JSON.stringify(note));
 }
 
 function getNotes() {
-  return read().then((notes) => {
-    let parseNotes = [].concat(JSON.parse(notes));
-    return parseNotes;
+  return read().then((note) => {
+    let parseNote = [].concat(JSON.parse(note));
+    return parseNote;
   });
 }
 
