@@ -1,10 +1,10 @@
 # note-taker
 
-##Tech:
--express.js,
--js,
--html,
--json
+## Tech:
+### express.js
+### js
+### html
+### json
 
 
 ## Description:
