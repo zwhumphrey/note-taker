@@ -1,6 +1,6 @@
 # note-taker
 
-##Tech
+##Tech:
 -express.js,
 -js,
 -html,
