@@ -1,41 +1,42 @@
-//const dbJson = require("./db.json");
 const fs = require("fs");
-//const path = require("path");
+
 const { v4: uuidv4 } = require("uuid");
-//const { workerData } = require("worker_threads");
+
 const util = require("util");
 
-const readNote = util.promisify(fs.readfile);
-const writeNote = util.promisify(fs.writefile);
+const readNote = util.promisify(fs.readFile);
+const writeNote = util.promisify(fs.writeFile);
 
-function read() {
-  return readNote("db/db.json", "utf8");
+class NotesDb {
+  read() {
+    return readNote("db/db.json", "utf8");
+  }
+
+  write(note) {
+    return writeNote("db/db.json", JSON.stringify(note));
+  }
+
+  getNotes() {
+    return this.read().then((note) => {
+      let parseNote = [].concat(JSON.parse(note));
+      return parseNote;
+    });
+  }
+
+  createNote(info) {
+    //trying new code to find error
+    console.log(info);
+    const { title, text } = info;
+    if (!title || !text) {
+      throw new Error("Both title and text can not be blank");
+    }
+    const newNote = { title, text, id: uuidv4() };
+
+    return this.getNotes()
+      .then((notes) => [...notes, newNote])
+      .then((updatedNote) => this.write(updatedNote))
+      .then(() => newNote);
+  }
 }
 
-function write() {
-  return writeNote("db/db.json", JSON.stringify(note));
-}
-
-function getNotes() {
-  return read().then((note) => {
-    let parseNote = [].concat(JSON.parse(note));
-    return parseNote;
-  });
-}
-
-function createNote(info) {
-  getNotes();
-  console.log(getNotes());
-  const { title, text } = info;
-  const newNote = { title, text, id: uuidv4() };
-  console.log(newNote);
-  return getNotes()
-    .then((notes) => [...notes, newNote])
-    .then((updatedNotes) => write(updatedNotes))
-    .then(() => newNote);
-}
-
-module.exports = {
-  createNote,
-  getNotes,
-};
+module.exports = new NotesDb();
